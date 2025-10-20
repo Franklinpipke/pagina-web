@@ -1,0 +1,370 @@
+/* ========================================
+   ANIMACIONES ECOWAVE - animations.css
+   ======================================== */
+
+/* Animación de entrada para el header */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header {
+    animation: slideDown 0.6s ease-out;
+}
+
+/* Animación de entrada para el logo */
+@keyframes logoSpin {
+    from {
+        transform: rotate(-360deg) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.logo-img {
+    animation: logoSpin 0.8s ease-out 0.3s backwards;
+}
+
+/* Animación del texto del logo */
+@keyframes fadeInRight {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.logo-text {
+    animation: fadeInRight 0.6s ease-out 0.5s backwards;
+}
+
+/* Animación del botón admin */
+@keyframes fadeInLeft {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.admin-toggle {
+    animation: fadeInLeft 0.6s ease-out 0.5s backwards;
+}
+
+/* Animación de entrada para los items del nav */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-item {
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.nav-item:nth-child(1) { animation-delay: 0.1s; }
+.nav-item:nth-child(2) { animation-delay: 0.2s; }
+.nav-item:nth-child(3) { animation-delay: 0.3s; }
+.nav-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Animación para las tarjetas de productos */
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.product-card {
+    animation: scaleIn 0.4s ease-out backwards;
+}
+
+/* Delay escalonado para las tarjetas */
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.15s; }
+.product-card:nth-child(3) { animation-delay: 0.2s; }
+.product-card:nth-child(4) { animation-delay: 0.25s; }
+.product-card:nth-child(5) { animation-delay: 0.3s; }
+.product-card:nth-child(6) { animation-delay: 0.35s; }
+.product-card:nth-child(7) { animation-delay: 0.4s; }
+.product-card:nth-child(8) { animation-delay: 0.45s; }
+.product-card:nth-child(9) { animation-delay: 0.5s; }
+
+/* Animación de hover para productos */
+.product-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+    animation: none;
+}
+
+/* Animación de pulso para botones flotantes */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 30px rgba(76, 175, 80, 0.6);
+    }
+}
+
+.add-product-btn {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.add-product-btn:hover {
+    animation: none;
+}
+
+/* Animación de pulso para WhatsApp */
+@keyframes pulseWhatsApp {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+}
+
+.whatsapp-btn {
+    animation: pulseWhatsApp 2s ease-in-out infinite;
+}
+
+.whatsapp-btn:hover {
+    animation: none;
+}
+
+/* Animación de rotación para botones de exportar/importar */
+@keyframes rotateIn {
+    from {
+        transform: rotate(-180deg) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.btn-export, .btn-import-wrapper {
+    animation: rotateIn 0.5s ease-out backwards;
+}
+
+.btn-export {
+    animation-delay: 0.1s;
+}
+
+.btn-import-wrapper {
+    animation-delay: 0.2s;
+}
+
+/* Animación de entrada para el modal */
+@keyframes modalFadeIn {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.modal.active {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Animación de sacudida para errores */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.error-shake {
+    animation: shake 0.5s;
+}
+
+/* Animación de aparición de error */
+@keyframes errorSlideDown {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.password-error.show {
+    animation: errorSlideDown 0.3s ease-out;
+}
+
+/* Animación de imagen de producto al cargar */
+@keyframes imageLoad {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.product-image {
+    animation: imageLoad 0.4s ease-out;
+}
+
+/* Animación de hover en botones */
+@keyframes buttonBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.btn:hover {
+    animation: buttonBounce 0.3s ease-out;
+}
+
+/* Animación de brillo para el precio */
+@keyframes priceShine {
+    from {
+        text-shadow: 0 0 0 rgba(25, 118, 210, 0);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(25, 118, 210, 0.5);
+    }
+}
+
+.product-card:hover .product-price {
+    animation: priceShine 0.6s ease-out;
+}
+
+/* Animación de título de categoría */
+@keyframes titleSlide {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.category-title {
+    animation: titleSlide 0.5s ease-out;
+}
+
+/* Animación de gradiente en el header */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header {
+    background-size: 200% 200%;
+    animation: slideDown 0.6s ease-out, gradientShift 10s ease infinite 1s;
+}
+
+/* Animación suave para el scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animación de carga de productos */
+.products-grid {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Transición suave para cambio de categorías */
+.category-section {
+    transition: opacity 0.3s ease-out;
+}
+
+.category-section:not(.active) {
+    opacity: 0;
+}
+
+.category-section.active {
+    opacity: 1;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+/* Animación de latido para notificaciones */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.1); }
+    20%, 40% { transform: scale(0.95); }
+}
+
+/* Animación de onda para el ícono de WhatsApp */
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+}
+
+.whatsapp-btn:hover i {
+    animation: wave 0.5s ease-in-out;
+}
+
+/* Animación de giro para botón de contraseña visible */
+@keyframes spinIcon {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(180deg); }
+}
+
+.password-toggle:active i {
+    animation: spinIcon 0.3s ease-out;
+}

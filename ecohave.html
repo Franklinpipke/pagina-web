@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWave - Productos de Limpieza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+         
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1976d2 0%, #2196f3 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 20px rgba(25, 118, 210, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #1976d2;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .admin-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .admin-toggle:hover {
+            background: white;
+            color: #1976d2;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+            z-index: 99;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            padding: 18px 30px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: #f5f5f5;
+            color: #1976d2;
+        }
+
+        .nav-item.active {
+            border-bottom-color: #1976d2;
+            color: #1976d2;
+            background: #e3f2fd;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .category-title {
+            font-size: 28px;
+            color: #1976d2;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .products-container {
+            max-height: 900px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .products-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .products-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .products-container::-webkit-scrollbar-thumb {
+            background: #1976d2;
+            border-radius: 10px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.3);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1976d2, #2196f3);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 50px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            min-height: 50px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1976d2;
+        }
+
+        /* Admin Mode */
+        .admin-controls {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            gap: 10px;
+        }
+
+        body.admin-mode .admin-controls {
+            display: flex;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background: #2196f3;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-edit:hover {
+            background: #1976d2;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-delete:hover {
+            background: #d32f2f;
+        }
+
+        .export-import-buttons {
+            display: none;
+            position: fixed;
+            bottom: 170px;
+            right: 30px;
+            gap: 10px;
+            flex-direction: column;
+            z-index: 98;
+        }
+
+        body.admin-mode .export-import-buttons {
+            display: flex;
+        }
+
+        .btn-export, .btn-import-wrapper {
+            width: 60px;
+            height: 60px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 152, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .btn-import-wrapper {
+            background: #9c27b0;
+            box-shadow: 0 4px 20px rgba(156, 39, 176, 0.4);
+        }
+
+        .btn-export:hover {
+            background: #f57c00;
+            transform: scale(1.1);
+        }
+
+        .btn-import-wrapper:hover {
+            background: #7b1fa2;
+            transform: scale(1.1);
+        }
+
+        .btn-import-wrapper input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .add-product-btn {
+            position: fixed;
+            bottom: 310px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 98;
+        }
+
+        body.admin-mode .add-product-btn {
+            display: flex;
+        }
+
+        .add-product-btn:hover {
+            background: #45a049;
+            transform: scale(1.1);
+        }
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 99;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .password-modal .modal-content {
+            max-width: 400px;
+        }
+
+        .password-input-group {
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .password-input-group input {
+            width: 100%;
+            padding: 15px;
+            padding-right: 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .password-input-group input:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+
+        .password-input-group input.error-shake {
+            border-color: #f44336;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #757575;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px;
+        }
+
+        .password-toggle:hover {
+            color: #1976d2;
+        }
+
+        .password-error {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+            animation: shake 0.3s;
+        }
+
+        .password-error.show {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .modal-title {
+            font-size: 24px;
+            color: #1976d2;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-save {
+            background: #1976d2;
+            color: white;
+            flex: 1;
+            padding: 12px;
+        }
+
+        .btn-save:hover {
+            background: #1565c0;
+        }
+
+        .btn-cancel {
+            background: #757575;
+            color: white;
+            flex: 1;
+            padding: 12px;
+        }
+
+        .btn-cancel:hover {
+            background: #616161;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-content {
+                padding: 0 15px;
+            }
+
+            .nav-item {
+                padding: 15px 20px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<script src="mouse-effects.js"></script>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-img">EW</div>
+                <div class="logo-text">EcoWave</div>
+            </div>
+            <button class="admin-toggle" onclick="toggleAdminMode()">Modo Admin</button>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <div class="nav-item active" onclick="showCategory(0)">Suavisantes</div>
+            <div class="nav-item" onclick="showCategory(1)">Lavandinas</div>
+            <div class="nav-item" onclick="showCategory(2)">Jabones Liquidos</div>
+            <div class="nav-item" onclick="showCategory(3)">Desinfectantes</div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="category-section active" data-category="0">
+            <h2 class="category-title">Suavisantes</h2>
+            <div class="products-container">
+                <div class="products-grid" id="products-0"></div>
+            </div>
+        </div>
+        <div class="category-section" data-category="1">
+            <h2 class="category-title">Lavandinas</h2>
+            <div class="products-container">
+                <div class="products-grid" id="products-1"></div>
+            </div>
+        </div>
+        <div class="category-section" data-category="2">
+            <h2 class="category-title">Jabones Liquidos</h2>
+            <div class="products-container">
+                <div class="products-grid" id="products-2"></div>
+            </div>
+        </div>
+        <div class="category-section" data-category="3">
+            <h2 class="category-title">Desinfectantes</h2>
+            <div class="products-container">
+                <div class="products-grid" id="products-3"></div>
+            </div>
+        </div>
+    </main>
+
+    <button class="add-product-btn" onclick="openAddModal()">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <div class="export-import-buttons">
+        <button class="btn-export" onclick="exportData()" title="Exportar datos">
+            <i class="fas fa-download"></i>
+        </button>
+        <div class="btn-import-wrapper" title="Importar datos">
+            <i class="fas fa-upload"></i>
+            <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+        </div>
+    </div>
+
+    <a href="https://wa.me/5493743445550" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal Contraseña -->
+    <div class="modal password-modal" id="passwordModal">
+        <div class="modal-content">
+            <h3 class="modal-title">🔒 Acceso Administrador</h3>
+            <form id="passwordForm">
+                <div class="password-input-group">
+                    <input type="password" id="adminPassword" placeholder="Ingrese la contraseña" required>
+                    <button type="button" class="password-toggle" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye" id="passwordIcon"></i>
+                    </button>
+                </div>
+                <div class="password-error" id="passwordError">
+                    <i class="fas fa-exclamation-circle"></i> Contraseña incorrecta
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-save">Acceder</button>
+                    <button type="button" class="btn btn-cancel" onclick="closePasswordModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modalTitle">Agregar Producto</h3>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select id="productCategory" required>
+                        <option value="0">Suavisantes</option>
+                        <option value="1">Lavandinas</option>
+                        <option value="2">Jabones Liquidos</option>
+                        <option value="3">Desinfectantes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Producto</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Precio ($)</label>
+                    <input type="number" id="productPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Imagen del Producto</label>
+                    <input type="file" id="productImage" accept="image/*">
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-save">Guardar</button>
+                    <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let products = {
+            0: [],
+            1: [],
+            2: [],
+            3: []
+        };
+        let editingProduct = null;
+        let currentCategory = 0;
+
+        // Inicializar con productos de ejemplo
+        function initProducts() {
+            // Intentar cargar desde localStorage primero
+            const savedData = localStorage.getItem('ecowave_products');
+            
+            if (savedData) {
+                try {
+                    products = JSON.parse(savedData);
+                    console.log('Datos cargados desde localStorage');
+                } catch (e) {
+                    console.error('Error al cargar datos:', e);
+                    loadDefaultProducts();
+                }
+            } else {
+                loadDefaultProducts();
+            }
+            
+            renderAllProducts();
+        }
+
+        function loadDefaultProducts() {
+            const sampleProducts = [
+                { name: 'Detergente Multiuso', price: 1500, image: '' },
+                { name: 'Limpiador de Pisos', price: 1200, image: '' },
+                { name: 'Desinfectante', price: 1800, image: '' }
+            ];
+
+            for (let cat = 0; cat < 4; cat++) {
+                products[cat] = sampleProducts.map((p, i) => ({
+                    id: Date.now() + i + cat * 100,
+                    ...p
+                }));
+            }
+        }
+
+        // Guardar en localStorage
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem('ecowave_products', JSON.stringify(products));
+                console.log('Datos guardados en localStorage');
+            } catch (e) {
+                console.error('Error al guardar:', e);
+                alert('Error al guardar los datos');
+            }
+        }
+
+        // Exportar datos a archivo JSON
+        function exportData() {
+            const dataStr = JSON.stringify(products, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'ecowave_productos_' + new Date().getTime() + '.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            alert('✅ Datos exportados correctamente');
+        }
+
+        // Importar datos desde archivo JSON
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    products = importedData;
+                    saveToLocalStorage();
+                    renderAllProducts();
+                    alert('✅ Datos importados correctamente');
+                } catch (error) {
+                    alert('❌ Error al importar el archivo. Asegúrate de que sea un archivo JSON válido.');
+                    console.error('Error:', error);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function renderProducts(category) {
+            const container = document.getElementById(`products-${category}`);
+            container.innerHTML = '';
+
+            products[category].forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    ${product.image ? 
+                        `<img src="${product.image}" alt="${product.name}" class="product-image">` :
+                        `<div class="product-image"><i class="fas fa-spray-can"></i></div>`
+                    }
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    <div class="admin-controls">
+                        <button class="btn btn-edit" onclick="editProduct(${category}, ${product.id})">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="btn btn-delete" onclick="deleteProduct(${category}, ${product.id})">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderAllProducts() {
+            for (let i = 0; i < 4; i++) {
+                renderProducts(i);
+            }
+        }
+
+        function showCategory(index) {
+            currentCategory = index;
+            document.querySelectorAll('.nav-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.category-section').forEach((section, i) => {
+                section.classList.toggle('active', i === index);
+            });
+            
+            // Scroll suave al inicio de la sección
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleAdminMode() {
+            if (!document.body.classList.contains('admin-mode')) {
+                // NO activar el modo admin todavía, solo abrir el modal
+                document.getElementById('passwordModal').classList.add('active');
+                document.getElementById('adminPassword').focus();
+            } else {
+                // Ya está en modo admin, desactivar y volver a modo vista
+                document.body.classList.remove('admin-mode');
+                const btn = document.querySelector('.admin-toggle');
+                btn.textContent = 'Modo Admin';
+            }
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordForm').reset();
+            document.getElementById('passwordError').classList.remove('show');
+            document.getElementById('adminPassword').classList.remove('error-shake');
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('adminPassword');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.className = 'fas fa-eye';
+            }
+        }
+
+        // Manejar el formulario de contraseña
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const passwordInput = document.getElementById('adminPassword');
+            const password = passwordInput.value;
+            const correctPassword = '!"#$%&/()=)(/&%$#"!';
+            const errorElement = document.getElementById('passwordError');
+            
+            console.log('Password ingresada:', password);
+            console.log('Password correcta:', correctPassword);
+            console.log('¿Son iguales?:', password === correctPassword);
+            
+            // Validar si la contraseña es exactamente igual
+            if (password === correctPassword) {
+                // ✅ Contraseña CORRECTA
+                console.log('Contraseña correcta - Activando modo admin');
+                errorElement.classList.remove('show');
+                
+                // Cerrar modal
+                document.getElementById('passwordModal').classList.remove('active');
+                
+                // Activar modo admin
+                document.body.classList.add('admin-mode');
+                const btn = document.querySelector('.admin-toggle');
+                btn.textContent = 'Modo Vista';
+                
+                // Limpiar formulario
+                passwordInput.value = '';
+                passwordInput.classList.remove('error-shake');
+            } else {
+                // ❌ Contraseña INCORRECTA
+                console.log('Contraseña incorrecta');
+                errorElement.classList.add('show');
+                passwordInput.classList.add('error-shake');
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Remover la animación después de un momento
+                setTimeout(() => {
+                    passwordInput.classList.remove('error-shake');
+                }, 300);
+            }
+        });
+
+        function openAddModal() {
+            editingProduct = null;
+            document.getElementById('modalTitle').textContent = 'Agregar Producto';
+            document.getElementById('productForm').reset();
+            document.getElementById('productCategory').value = currentCategory;
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function editProduct(category, productId) {
+            const product = products[category].find(p => p.id === productId);
+            if (!product) return;
+
+            editingProduct = { category, id: productId };
+            document.getElementById('modalTitle').textContent = 'Editar Producto';
+            document.getElementById('productCategory').value = category;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productPrice').value = product.price;
+            // Para archivos locales, no podemos pre-cargar la imagen
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function deleteProduct(category, productId) {
+            if (confirm('¿Estás seguro de eliminar este producto?')) {
+                products[category] = products[category].filter(p => p.id !== productId);
+                saveToLocalStorage();
+                renderProducts(category);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            editingProduct = null;
+        }
+
+        document.getElementById('productForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const category = parseInt(document.getElementById('productCategory').value);
+            const name = document.getElementById('productName').value;
+            const price = parseFloat(document.getElementById('productPrice').value);
+            const imageFile = document.getElementById('productImage').files[0];
+
+            // Convertir imagen a Base64
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imageData = event.target.result;
+                    saveProduct(category, name, price, imageData);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                // Si no hay nueva imagen y estamos editando, mantener la imagen anterior
+                let imageData = '';
+                if (editingProduct) {
+                    const oldCategory = editingProduct.category;
+                    const product = products[oldCategory].find(p => p.id === editingProduct.id);
+                    imageData = product.image || '';
+                }
+                saveProduct(category, name, price, imageData);
+            }
+        });
+
+        function saveProduct(category, name, price, image) {
+            if (editingProduct) {
+                // Editar producto existente
+                const oldCategory = editingProduct.category;
+                const productIndex = products[oldCategory].findIndex(p => p.id === editingProduct.id);
+                
+                if (oldCategory === category) {
+                    // Misma categoría
+                    products[category][productIndex] = {
+                        id: editingProduct.id,
+                        name,
+                        price,
+                        image
+                    };
+                } else {
+                    // Cambio de categoría
+                    const product = products[oldCategory].splice(productIndex, 1)[0];
+                    products[category].push({
+                        ...product,
+                        name,
+                        price,
+                        image
+                    });
+                    renderProducts(oldCategory);
+                }
+                renderProducts(category);
+            } else {
+                // Agregar nuevo producto
+                if (products[category].length >= 15) {
+                    alert('Esta categoría ya tiene el máximo de 15 productos');
+                    return;
+                }
+
+                products[category].push({
+                    id: Date.now(),
+                    name,
+                    price,
+                    image
+                });
+                renderProducts(category);
+            }
+
+            saveToLocalStorage();
+            closeModal();
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target.id === 'productModal') {
+                closeModal();
+            }
+        });
+
+        document.getElementById('passwordModal').addEventListener('click', (e) => {
+            if (e.target.id === 'passwordModal') {
+                closePasswordModal();
+            }
+        });
+
+        // Inicializar
+        initProducts();
+    </script>
+</body>
+</html>
